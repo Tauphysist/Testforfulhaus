@@ -5,6 +5,8 @@ name: Deploy to heroku.
 on:
   push:
     branches: [main]
+  pull_request:
+    branches: [main]
 
 # Your workflows jobs.
 jobs:
@@ -23,8 +25,8 @@ jobs:
           docker login -u $DOKER_USER -p $DOKER_PASSWORD
       - name: Build the Docker image
         run: docker build . --file Dockerfile --tag my-image-name:$(date +%s)
-      - name: Docker Puch
-        run: docker puch ${{secrets.DOCKER_USER}}/testforfulhaus
+      - name: Docker Push
+        run: docker push ${{secrets.DOCKER_USER}}/testforfulhaus
 
 #### ⬇ IMPORTANT PART ⬇ ###
 #
