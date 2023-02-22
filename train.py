@@ -145,8 +145,11 @@ print(
 )
 
 plt.show()
-joblib.dump(model, 'model.pkl')
-model_json = model.to_json()
+converter = tf.lite.TFLiteConverter.from_keras_model(model)
+tflite_model = converter.convert()
+
+joblib.dump(tflite_model, 'model.pkl')
+# model_json = model.to_json()
 # with open("model.json", "w") as json_file:
 #     json_file.write(model_json)
 # # serialize weights to HDF5
