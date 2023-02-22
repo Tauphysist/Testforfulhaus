@@ -146,8 +146,10 @@ print(
 
 plt.show()
 converter = tf.lite.TFLiteConverter.from_keras_model(model)
-tflite_model = converter.convert()
 
+converter.optimizations = [tf.lite.Optimize.DEFAULT]
+converter.target_spec.supported_types = [tf.float16]
+tflite_model = converter.convert()
 joblib.dump(tflite_model, 'model.pkl')
 # model_json = model.to_json()
 # with open("model.json", "w") as json_file:
