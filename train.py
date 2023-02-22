@@ -2,7 +2,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 import PIL
 import tensorflow as tf
-
+import joblib
 from tensorflow import keras
 from tensorflow.keras import layers
 from tensorflow.keras.models import Sequential
@@ -138,16 +138,17 @@ img_array = tf.keras.utils.img_to_array(img)
 img_array = tf.expand_dims(img_array, 0)
 predictions = model.predict(img_array)
 score = tf.nn.softmax(predictions[0])
-
+print(score)
 print(
     "This image most likely belongs to {} with a {:.2f} percent confidence."
     .format(class_names[np.argmax(score)], 100 * np.max(score))
 )
 
 plt.show()
+joblib.dump(model, 'model.pkl')
 model_json = model.to_json()
-with open("model.json", "w") as json_file:
-    json_file.write(model_json)
-# serialize weights to HDF5
-model.save_weights("model.h5")
-print("Saved model to disk")
+# with open("model.json", "w") as json_file:
+#     json_file.write(model_json)
+# # serialize weights to HDF5
+# model.save_weights("model.h5")
+# print("Saved model to disk")
