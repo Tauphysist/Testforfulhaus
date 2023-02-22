@@ -23,4 +23,6 @@ jobs:
     - name: Build the Docker image
       run: docker build . --file Dockerfile --tag my-image-name:$(date +%s)
     - name: Docker push
-      run: docker push ${{secrets.DOCKER_USER}}/testforfulhaus:tagname
+      run: |
+        docker tag testforfulhaus ${{secrets.DOCKER_USER}}/testforfulhaus
+        docker push ${{secrets.DOCKER_USER}}/testforfulhaus
