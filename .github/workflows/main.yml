@@ -5,18 +5,20 @@ name: Deploy to heroku.
 on:
   push:
     branches: [main]
-env:
-  DOKER_USER:${{secrets.DOCKER_USER}}
-  DOKER_PASSWORD:${{secrets.DOKER_PASSWORD}}
+
 # Your workflows jobs.
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
       # Check-out your repository.
-      - name: Checkout
-        uses: actions/checkout@v2
+      #      - name: Checkout
+      - uses: actions/checkout@v2
       - name: docker login
+        env:
+          DOKER_USER:${{secrets.DOCKER_USER}}
+          DOKER_PASSWORD:${{secrets.DOKER_PASSWORD}}
+#
         run: |
           docker login -u $DOKER_USER -p $DOKER_PASSWORD
       - name: Build the Docker image
