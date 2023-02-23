@@ -111,7 +111,7 @@ tflite_model = converter.convert()
 
 #Model saving unit
 joblib.dump(tflite_model, 'model.pkl')
-model.save('my_model.h5')
+model.save('model.h5')
 model.save('saved_model/my_model')
 
 
