@@ -4,7 +4,7 @@ Current folder consists of several files including:
 
 1) Training file (train.py)
 
-2) Tensorflaw models saved in different formats (most of them start with model.*) 
+2) TensorFlow models saved in different formats (most of them start with model.*) 
 
 3) API server (app.py)
 
